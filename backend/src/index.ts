@@ -23,12 +23,19 @@ initializeSocket(server);
 app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+
+// CORS: allow frontend hosted on Vercel
 app.use(
   cors({
-    origin: Env.FRONTEND_ORIGIN,
+    origin: [
+      Env.FRONTEND_ORIGIN,          // Production frontend
+      "http://localhost:5173"       // Local dev frontend
+    ],
     credentials: true,
   })
 );
+
+// Passport initialization
 app.use(passport.initialize());
 
 // Health check endpoint
@@ -45,7 +52,7 @@ app.get(
 // API routes
 app.use("/api", routes);
 
-// ❌ Removed frontend serving (no client folder)
+// ❌ Removed serving frontend static files (frontend is on Vercel)
 
 // Error handling
 app.use(errorHandler);
