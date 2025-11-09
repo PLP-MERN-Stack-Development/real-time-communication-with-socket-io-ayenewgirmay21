@@ -25,10 +25,15 @@ const server = http_1.default.createServer(app);
 app.use(express_1.default.json({ limit: "10mb" }));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
+// CORS: allow frontend hosted on Vercel
 app.use((0, cors_1.default)({
-    origin: env_config_1.Env.FRONTEND_ORIGIN,
+    origin: [
+        env_config_1.Env.FRONTEND_ORIGIN, // Production frontend
+        "http://localhost:5173" // Local dev frontend
+    ],
     credentials: true,
 }));
+// Passport initialization
 app.use(passport_1.default.initialize());
 // Health check endpoint
 app.get("/health", (0, asyncHandler_middleware_1.asyncHandler)(async (req, res) => {
@@ -39,7 +44,7 @@ app.get("/health", (0, asyncHandler_middleware_1.asyncHandler)(async (req, res) 
 }));
 // API routes
 app.use("/api", routes_1.default);
-// ❌ Removed frontend serving (no client folder)
+// ❌ Removed serving frontend static files (frontend is on Vercel)
 // Error handling
 app.use(errorHandler_middleware_1.errorHandler);
 // Start server
