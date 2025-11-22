@@ -4,7 +4,7 @@ Welcome to the **Real-Time Chat App**, a full-stack MERN application with **real
 
 ## 🌐 Live Demo
 
-Check out the app live: [https://real-time-chat-app-umber-gamma.vercel.app/](https://real-time-chat-app-umber-gamma.vercel.app/)
+Check out the app live: [https://real-time-chat-app-fpk1.onrender.com/](https://real-time-chat-app-fpk1.onrender.com/)
 
 ---
 
