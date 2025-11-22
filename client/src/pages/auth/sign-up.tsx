@@ -84,7 +84,7 @@ const SignUp = () => {
                       <FormControl>
                         <Input
                           type="email"
-                          placeholder="johndoe@example.com"
+                          placeholder="aye@example.com"
                           {...field}
                         />
                       </FormControl>
